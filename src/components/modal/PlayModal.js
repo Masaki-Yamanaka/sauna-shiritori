@@ -1,31 +1,65 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {
-  Text,
-  View,
-  TouchableHighlight,
-  StyleSheet,
-  Modal,
-  Button
-} from "react-native";
+import { View, StyleSheet, Modal } from "react-native";
 import colors from "../../styles/colors";
+import RoundedButton from "../buttons/RoundedButton";
 
 export default class PlayModal extends Component {
-
-  
+  constructor(props) {
+    super(props);
+    this.closeModal = this.closeModal.bind(this);
+    this.story = this.story.bind(this);
+    this.basicRule = this.basicRule.bind(this);
+    this.cardCategory = this.cardCategory.bind(this);
+    this.option = this.option.bind(this);
+  }
+  closeModal() {
+    this.props.closeModalScreen();
+  }
+  story() {
+    this.props.storyTransition();
+  }
+  basicRule() {
+    this.props.basicRuleTransition();
+  }
+  cardCategory() {
+    this.props.cardCategoryTransition();
+  }
+  option() {
+    this.props.optionSettingTransition();
+  }
 
   render() {
-    const { modalVisible, backButton } = this.props;
+    const { modalVisible } = this.props;
     return (
       <Modal visible={modalVisible} transparent={true} animationType={"slide"}>
         <View style={styles.wrapper}>
           <View style={styles.listWrapper}>
-            <Button title="ストーリー" />
-            <Button title="基本ルール" />
-            <Button title="カードの種類" />
-            <Button title="オプション設定" />
-            <Button title="戻る"
-        
+            <RoundedButton
+              text={"ストーリー"}
+              textColor={colors.white}
+              handleButton={this.story}
+            />
+            <RoundedButton
+              text={"基本ルール"}
+              textColor={colors.white}
+              handleButton={this.basicRule}
+            />
+            <RoundedButton
+              text={"カードの種類"}
+              textColor={colors.white}
+              handleButton={this.cardCategory}
+            />
+            <RoundedButton
+              text={"オプション設定"}
+              textColor={colors.white}
+              handleButton={this.option}
+            />
+            <RoundedButton
+              text={"戻り"}
+              textColor={colors.pink01}
+              background={colors.white}
+              handleButton={this.closeModal}
             />
           </View>
         </View>
@@ -50,14 +84,9 @@ const styles = StyleSheet.create({
     left: 0
   },
   listWrapper: {
-    display: "flex",
-    width: 200,
-    height: 200,
-    backgroundColor: colors.white,
-    borderRadius: 15,
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: [{ translateY: "-100%" }, { translateX: "-100%" }]
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 30
   }
 });

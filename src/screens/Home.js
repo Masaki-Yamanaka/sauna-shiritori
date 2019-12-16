@@ -1,25 +1,24 @@
 import React, { Component } from "react";
 import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
-import PlayModal from '../components/modal/PlayModal';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from "react-native";
+import PlayModal from "../components/modal/PlayModal";
+import { StyleSheet, Text, View, Image } from "react-native";
 
 export default class Home extends Component {
   static navigationOptions = { header: null };
   constructor(props) {
     super(props);
     this.state = {
-      modalVisible: false,
-    }
+      modalVisible: false
+    };
 
     this.handleButton = this.handleButton.bind(this);
     this.playButton = this.playButton.bind(this);
-    this.backButton = this.backButton.bind(this);
+    this.closeModalScreen = this.closeModalScreen.bind(this);
+    this.basicRuleTransition = this.basicRuleTransition.bind(this);
+    this.storyTransition = this.storyTransition.bind(this);
+    this.cardCategoryTransition = this.cardCategoryTransition.bind(this);
+    this.optionSettingTransition = this.optionSettingTransition.bind(this);
   }
   handleButton() {
     this.props.navigation.navigate("inputnum");
@@ -28,13 +27,43 @@ export default class Home extends Component {
   playButton() {
     this.setState({
       modalVisible: true
-    })
+    });
   }
-  backButton() {
+  closeModalScreen() {
     this.setState({
       modalVisible: false
-    })
+    });
   }
+
+  // 遊び方ページ遷移  start
+
+  storyTransition() {
+    this.setState({
+      modalVisible: false
+    });
+    this.props.navigation.navigate("story");
+  }
+
+  basicRuleTransition() {
+    this.setState({
+      modalVisible: false
+    });
+    this.props.navigation.navigate("basicrule");
+  }
+  cardCategoryTransition() {
+    this.setState({
+      modalVisible: false
+    });
+    this.props.navigation.navigate("cardcategory");
+  }
+  optionSettingTransition() {
+    this.setState({
+      modalVisible: false
+    });
+    this.props.navigation.navigate("optionsetting");
+  }
+
+  // 遊び方ページ遷移  end
 
   render() {
     const { modalVisible } = this.state;
@@ -56,17 +85,22 @@ export default class Home extends Component {
             background={colors.white}
             style={styles.startButton}
             handleButton={this.handleButton}
-          ></RoundedButton>
+          />
 
           <RoundedButton
             text={"遊び方"}
             textColor={colors.white}
             handleButton={this.playButton}
             backButton={this.backButton}
-          ></RoundedButton>
+          />
         </View>
         <PlayModal
           modalVisible={modalVisible}
+          closeModalScreen={this.closeModalScreen}
+          storyTransition={this.storyTransition}
+          basicRuleTransition={this.basicRuleTransition}
+          cardCategoryTransition={this.cardCategoryTransition}
+          optionSettingTransition={this.optionSettingTransition}
         />
       </View>
     );
