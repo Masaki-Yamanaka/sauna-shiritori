@@ -13,8 +13,8 @@ const AppNavigator = createStackNavigator(
   
   {
     home: Home,
-    inputnum: InputNum,
-    imageoutput: ImageOutput
+    // inputnum: InputNum,
+    // imageoutput: ImageOutput
   }
 );
 export default createAppContainer(AppNavigator);

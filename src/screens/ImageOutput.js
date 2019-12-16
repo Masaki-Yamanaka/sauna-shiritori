@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
 import colors from "../styles/colors";
 
-var warm = 4;
-var cold = 3;
+var warm;
+var cold;
 var cardNum;
 var result = [];
 
@@ -34,6 +34,12 @@ export default class imageOutput extends Component {
   }
 
   createCardOrder() {
+
+    const { hotNum, coldNum } = this.props.navigation.state.params;
+    
+    const warm = hotNum;
+    const cold = coldNum;
+
     var warmArray = [];
     var coldArray = [];
 

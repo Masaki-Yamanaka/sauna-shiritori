@@ -9,7 +9,8 @@ export default class InputNum extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotNum: 0
+      hotNum: 0,
+      coldNum: 0
     };
     this.changeHotNum = this.changeHotNum.bind(this);
     this.changeColdNum = this.changeColdNum.bind(this);
@@ -17,21 +18,20 @@ export default class InputNum extends Component {
   }
 
   handleButton() {
-    this.props.navigation.navigate("imageoutput");
+    const { coldNum, hotNum } = this.state;
+    this.props.navigation.navigate("imageoutput", {coldNum: coldNum, hotNum: hotNum});
   }
 
   changeHotNum(num) {
     this.setState({
       hotNum: num
     });
-    console.log(num);
   }
 
   changeColdNum(num) {
     this.setState({
-      hotNum: num
+      coldNum: num
     });
-    console.log(num);
   }
 
   render() {
