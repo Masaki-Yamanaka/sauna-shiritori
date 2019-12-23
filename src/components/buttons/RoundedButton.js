@@ -5,7 +5,7 @@ import colors from "../../styles/colors";
 
 export default class RoundedButton extends Component {
   render() {
-    const { text, textColor, background,handleButton } = this.props;
+    const { text, textColor, background, handleButton } = this.props;
     const backgroundColor = background || "transparent";
     const color = textColor || colors.black;
     return (

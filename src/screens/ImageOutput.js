@@ -29,6 +29,7 @@ export default class imageOutput extends Component {
     });
     if (this.state.count >= result.length) {
       alert("ととのった〜！");
+      this.props.navigation.navigate("home");
     }
     cardNum = result[this.state.count];
   }

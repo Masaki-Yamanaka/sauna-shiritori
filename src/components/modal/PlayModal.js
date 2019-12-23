@@ -56,7 +56,7 @@ export default class PlayModal extends Component {
               handleButton={this.option}
             />
             <RoundedButton
-              text={"戻り"}
+              text={"戻る"}
               textColor={colors.pink01}
               background={colors.white}
               handleButton={this.closeModal}
