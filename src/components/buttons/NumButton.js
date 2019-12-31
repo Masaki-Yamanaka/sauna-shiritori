@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: "50%",
+    borderRadius: 50,
   },
   textStyle: {
     fontWeight: "bold",

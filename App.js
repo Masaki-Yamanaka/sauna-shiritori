@@ -5,6 +5,7 @@ import InputNum from "./src/screens/InputNum";
 import BasicRule from "./src/screens/settings/BasicRule";
 import CardCategory from "./src/screens/settings/CardCategory";
 import OptionSetting from "./src/screens/settings/OptionSetting";
+import Important from "./src/screens/settings/Important";
 import Story from "./src/screens/settings/Story";
 import NumButton from "./src/components/buttons/NumButton";
 import CardSelect from "./src/components/CardSelect";
@@ -28,22 +29,12 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotNum: 3,
-      coldNum: 4,
-      hardhot: 0,
-      spark: 0
+   
     };
   }
   render() {
     return (
-      
-      <CardSelect
-        cardType={"hardHotCard"}
-        cardName={"アツイカード"}
-        cardNum={this.state.hotNum}
-      />
-      
-      
+      <Important />
     );
   }
 }
