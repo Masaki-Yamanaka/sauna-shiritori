@@ -34,7 +34,12 @@ export default class App extends Component {
   }
   render() {
     return (
-      <Important />
+      <ImageOutput
+        hotNum={3}
+        coldNum={4}
+        hardhot={1}
+        spark={1}
+      />
     );
   }
 }
