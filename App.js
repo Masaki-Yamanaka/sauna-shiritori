@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Home from "./src/screens/Home";
 import ImageOutput from "./src/screens/ImageOutput";
 import InputNum from "./src/screens/InputNum";
+import PlayerSelect from "./src/screens/PlayerSelect";
 import BasicRule from "./src/screens/settings/BasicRule";
 import CardCategory from "./src/screens/settings/CardCategory";
 import OptionSetting from "./src/screens/settings/OptionSetting";
@@ -34,12 +35,7 @@ export default class App extends Component {
   }
   render() {
     return (
-      <ImageOutput
-        hotNum={3}
-        coldNum={4}
-        hardhot={1}
-        spark={1}
-      />
+      <PlayerSelect />
     );
   }
 }

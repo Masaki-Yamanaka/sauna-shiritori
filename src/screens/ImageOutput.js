@@ -9,13 +9,12 @@ import {
 } from "react-native";
 import colors from "../styles/colors";
 
-const cardArray = [];
 const resultArray = [];
+var Num = 0;
 
 export default class imageOutput extends Component {
   constructor(props) {
     super(props);
-    this.handlePress = this.handlePress.bind(this);
     this.startAnimation = this.startAnimation.bind(this);
 
     this.state = {
@@ -34,41 +33,25 @@ export default class imageOutput extends Component {
   }
 
   startAnimation() {
-    this.setState(prev => {
-      return {
-        deg: prev.deg + 360
-      };
-    });
+    setTimeout(() => {
+      this.setState(prev => {
+        return {
+          deg: prev.deg + 360,
+          count: prev.count + 1
+        };
+      });
+    }, 3500);
 
     Animated.timing(this.state.animation, {
       toValue: this.state.deg,
-      duration: 1500
-    }).start(() => {
-      this.setState(prevState => {
-        return {
-          count: prevState.count + 1
-        };
-      });
-    });
-  }
-
-  handlePress() {
-    // this.setState(prevState => {
-    //   return {
-    //     count: prevState.count + 1
-    //   };
-    // });
-    // if (this.state.count >= result.length) {
-    //   alert("ととのった〜！");
-    //   this.props.navigation.navigate("home");
-    // }
-    // cardNum = result[this.state.count];
+      duration: 4000
+    }).start();
+    Num = resultArray[this.state.count];
   }
 
   componentDidMount() {
     const { hotNum, coldNum, hardhot, spark } = this.props;
     const cardArray = [hotNum, coldNum, hardhot, spark]; //親コンポーネントから値を取得し、配列に格納
-    const resultArray = [];
     for (var j = 0; j < cardArray.length; j++) {
       //stateと関連付け
       for (var i = 0; i < cardArray[j]; i++) {
@@ -100,7 +83,7 @@ export default class imageOutput extends Component {
       <View style={styles.wrapper}>
         <View style={styles.container}>
           <Animated.View style={animatedStyles}>
-            <Image source={resultArray[1]} style={styles.image} />
+            <Image source={cards[Num]} style={styles.image} />
           </Animated.View>
           <TouchableOpacity style={styles.button} onPress={this.startAnimation}>
             <Text style={styles.text}>Press Me</Text>
