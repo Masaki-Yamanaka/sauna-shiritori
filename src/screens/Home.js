@@ -3,6 +3,8 @@ import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 import PlayModal from "../components/modal/PlayModal";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { SocialIcon } from "react-native-elements";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default class Home extends Component {
   static navigationOptions = { header: null };
@@ -74,7 +76,7 @@ export default class Home extends Component {
             <Image source={require("../img/header-logo.png")} />
           </View>
           <View style={styles.title}>
-            <Text style={styles.titleText}>サウナしりとり</Text>
+            <Text style={styles.titleText}>SAUNA SHIRITORI</Text>
           </View>
         </View>
 
@@ -85,6 +87,7 @@ export default class Home extends Component {
             background={colors.white}
             style={styles.startButton}
             handleButton={this.handleButton}
+            width={"80%"}
           />
 
           <RoundedButton
@@ -92,8 +95,18 @@ export default class Home extends Component {
             textColor={colors.white}
             handleButton={this.playButton}
             backButton={this.backButton}
+            width={"80%"}
           />
+          <View style={styles.socialContainer}>
+            <TouchableOpacity>
+              <SocialIcon type="twitter" />
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <SocialIcon type="facebook" />
+            </TouchableOpacity>
+          </View>
         </View>
+
         <PlayModal
           modalVisible={modalVisible}
           closeModalScreen={this.closeModalScreen}
@@ -130,8 +143,13 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   titleText: {
-    fontSize: 50,
+    fontSize: 27,
     color: colors.white,
     fontWeight: "600"
+  },
+  socialContainer: {
+    flexDirection: "row",
+    paddingTop: 40,
+    
   }
 });

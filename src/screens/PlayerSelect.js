@@ -15,7 +15,9 @@ export default class imageOutput extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      playerNum: 0
+    };
   }
 
   render() {
@@ -39,13 +41,16 @@ export default class imageOutput extends Component {
             <Text style={styles.mainTitle}>人数選択</Text>
           </View>
         </View>
-        <Text style={styles.mainNum}>4</Text>
+        <Text style={styles.mainNum}>{this.state.playerNum}</Text>
         <View style={styles.NumWrapper}>
           <NumButton
             text={"-"}
             textColor={colors.white}
             background={colors.pink01}
             borderColor={colors.white}
+            Adjustment={() => {
+              this.setState({ playerNum: this.state.playerNum - 1 });
+            }}
             Size={40}
           />
           <NumButton
@@ -53,6 +58,9 @@ export default class imageOutput extends Component {
             textColor={colors.white}
             background={colors.pink01}
             borderColor={colors.white}
+            Adjustment={() => {
+              this.setState({ playerNum: this.state.playerNum + 1 });
+            }}
           />
         </View>
         <RoundedButton
@@ -116,7 +124,7 @@ const styles = StyleSheet.create({
   },
   NumWrapper: {
     justifyContent: "space-around",
-      flexDirection: "row",
+    flexDirection: "row",
     paddingBottom: 60
   }
 });
