@@ -8,6 +8,7 @@ import {
   Animated
 } from "react-native";
 import colors from "../styles/colors";
+import ClapButton from "../components/buttons/ClapButton";
 
 const resultArray = [];
 var Num = 0;
@@ -89,6 +90,7 @@ export default class imageOutput extends Component {
             <Text style={styles.text}>Press Me</Text>
           </TouchableOpacity>
         </View>
+        <ClapButton />
       </View>
     );
   }
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.pink01
   },
   container: {
-    flex: 1,
+    flex: 6,
     justifyContent: "center",
     alignItems: "center"
   },
