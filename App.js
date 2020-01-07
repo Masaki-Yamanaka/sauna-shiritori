@@ -30,12 +30,10 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-   
+      
     };
   }
   render() {
-    return (
-      <ImageOutput />
-    );
+    return <ImageOutput hotNum={4} coldNum={3} hardhot={1} spark={1} />;
   }
 }

@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import colors from "../styles/colors";
 import ClapButton from "../components/buttons/ClapButton";
+import RoundedButton from "../components/buttons/RoundedButton";
 
 const resultArray = [];
 var Num = 0;
@@ -86,11 +87,17 @@ export default class imageOutput extends Component {
           <Animated.View style={animatedStyles}>
             <Image source={cards[Num]} style={styles.image} />
           </Animated.View>
-          <TouchableOpacity style={styles.button} onPress={this.startAnimation}>
-            <Text style={styles.text}>Press Me</Text>
-          </TouchableOpacity>
+           <RoundedButton
+            text={"カードを引く"}
+            textColor={colors.pink01}
+            background={colors.white}
+            handleButton={this.startAnimation}
+            width={"70%"}
+          />
         </View>
-        <ClapButton />
+        <View>
+          <ClapButton />
+        </View>
       </View>
     );
   }
@@ -99,16 +106,17 @@ export default class imageOutput extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: colors.pink01
+    backgroundColor: colors.pink01,
   },
   container: {
-    flex: 6,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center"
+    
   },
   image: {
     width: 300,
-    height: 300,
+    height: 417,
     marginBottom: 40
   },
   button: {
