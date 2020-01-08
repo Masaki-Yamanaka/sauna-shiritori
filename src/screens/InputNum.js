@@ -38,69 +38,15 @@ export default class InputNum extends Component {
 
         
         <View style={styles.inputWrapper}>
-          <View style={styles.inputBox}>
-            <View style={styles.inputBoxContainer}>
-              <View style={styles.leftImageBox}>
-                <Image
-                  style={styles.leftImage}
-                  source={require("../img/hot.png")}
-                ></Image>
-              </View>
 
-              <CardSelect
-                cardNum={this.state.hotNum}
-                cardCategory={"アツイカード"}
-              />
-              </View>
-          </View>
+          <CardSelect cardType={"hotCard"} cardName={"アツイカード"} cardNum={2} />
+          <CardSelect cardType={"coldCard"} cardName={"冷たいカード"} cardNum={4} />
+          <CardSelect cardType={"sparkCard"} cardName={"シビれるカード"} cardNum={1} />
+          <CardSelect cardType={"hardHotCard"} cardName={"激アツカード"} cardNum={0} />
+          
 
-          <View style={styles.inputBox}>
-            <View style={styles.inputBoxContainer}>
-              <View style={styles.leftImageBox}>
-                <Image
-                  style={styles.leftImage}
-                  source={require("../img/cold.png")}
-                ></Image>
-              </View>
-
-              <CardSelect
-                cardNum={this.state.coldNum}
-                cardCategory={"冷たいカード"}
-              />
-            </View>
-          </View>
-
-          <View style={styles.inputBox}>
-            <View style={styles.inputBoxContainer}>
-              <View style={styles.leftImageBox}>
-                <Image
-                  style={styles.leftImage}
-                  source={require("../img/hardhot.png")}
-                ></Image>
-              </View>
-
-              <CardSelect
-                cardNum={this.state.hardhot}
-                cardCategory={"激アツカード"}
-              />
-            </View>
-          </View>
-
-          <View style={styles.inputBox}>
-            <View style={styles.inputBoxContainer}>
-              <View style={styles.leftImageBox}>
-                <Image
-                  style={styles.leftImage}
-                  source={require("../img/spark.png")}
-                ></Image>
-              </View>
-
-              <CardSelect
-                cardNum={this.state.spark}
-                cardCategory={"シビれるカード"}
-              />
-            </View>
-          </View>
+    
+      
         </View>
 
         <View style={styles.nextButton}>

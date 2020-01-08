@@ -30,36 +30,39 @@ export default class InputNum extends Component {
         : null;
 
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.cardSelectBox}>
-          <View style={styles.cardSelectImageBox}>
-            <Image style={styles.cardSelectImage} source={imgSorce}></Image>
+      <View style={styles.cardSelectBox}>
+        <View style={styles.cardSelectImageBox}>
+          <Image style={styles.cardSelectImage} source={imgSorce}></Image>
+        </View>
+
+        <View style={styles.rightContainer}>
+          <View style={styles.rightTitleContainer}>
+            <Text style={styles.rightTitle}>{cardName}</Text>
           </View>
 
-          <View style={styles.rightContainer}>
-            <View style={styles.rightTitleContainer}>
-              <Text style={styles.rightTitle}>{cardName}</Text>
-            </View>
+          <View style={styles.rightNumContainer}>
+            <Text style={styles.rightNumText}>{cardNum}</Text>
+          </View>
 
-            <View style={styles.rightNumContainer}>
-              <Text style={styles.rightNumText}>{cardNum}</Text>
-            </View>
-
-            <View style={styles.rightButtonContainer}>
-              <NumButton
-                text={"-"}
-                textColor={colors.white}
-                background={colors.pink01}
-                borderColor={colors.white}
-                Size={40}
-              />
-              <NumButton
-                text={"+"}
-                textColor={colors.white}
-                background={colors.pink01}
-                borderColor={colors.white}
-              />
-            </View>
+          <View style={styles.rightButtonContainer}>
+            <NumButton
+              text={"-"}
+              textColor={colors.white}
+              textSize={15}
+              background={colors.pink01}
+              borderColor={colors.white}
+              width={30}
+              height={30}
+            />
+            <NumButton
+              text={"+"}
+              textColor={colors.white}
+              textSize={15}
+              background={colors.pink01}
+              borderColor={colors.white}
+              width={30}
+              height={30}
+            />
           </View>
         </View>
       </View>
@@ -68,20 +71,12 @@ export default class InputNum extends Component {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#E98989"
-  },
 
   cardSelectBox: {
     flexDirection: "row",
     margin: 20,
-    paddingRight: 15,
-    paddingLeft: 15,
-    paddingTop: 35,
-    paddingBottom: 35,
+    paddingHorizontal: 30,
+    paddingVertical: 35,
     borderWidth: 1,
     borderColor: "#E98989",
     shadowColor: "#000",
@@ -94,11 +89,12 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   cardSelectImageBox: {
-    flex: 1
+    flex: 1,
+    justifyContent: "center"
   },
   cardSelectImage: {
-    width: 150,
-    height: 210
+    width: 117,
+    height: 162
   },
   rightContainer: {
     flex: 1
@@ -106,25 +102,25 @@ const styles = StyleSheet.create({
   rightTitle: {
     color: colors.white,
     textAlign: "center",
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold"
   },
   rightTitleContainer: {
     borderColor: colors.white,
     borderBottomWidth: 1,
-    padding: 10,
-    margin: 10
+    paddingVertical: 12,
+    marginLeft: 15
   },
   rightNumContainer: {
-    margin: 20
+    marginVertical: 16
   },
   rightNumText: {
     textAlign: "center",
-    fontSize: 50,
+    fontSize: 42,
     color: colors.white
   },
   rightButtonContainer: {
     flexDirection: "row",
     justifyContent: "space-around"
-  },
+  }
 });

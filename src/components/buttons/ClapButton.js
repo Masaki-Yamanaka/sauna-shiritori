@@ -7,6 +7,8 @@ import {
   Image,
   Animated
 } from "react-native";
+import { colors } from "react-native-elements";
+import textColor from "../../styles/colors";
 
 export default class ClapsButton extends Component {
   constructor(props) {
@@ -146,14 +148,14 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
-    backgroundColor: "#15a872",
+    backgroundColor: "#fff",
     bottom: 20,
     right: 20,
     justifyContent: "center",
     alignItems: "center"
   },
   clasText: {
-    color: "white",
+    color: textColor.pink01,
     fontSize: 18
   }
 });

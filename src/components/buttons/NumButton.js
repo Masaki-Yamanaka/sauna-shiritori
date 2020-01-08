@@ -5,19 +5,34 @@ import colors from "../../styles/colors";
 
 export default class NumButton extends Component {
   render() {
-    const { text, textColor, background, borderColor, Adjustment, Size } = this.props;
+    const {
+      text,
+      textColor,
+      textSize,
+      background,
+      borderColor,
+      Adjustment,
+      width,
+      height
+    } = this.props;
     return (
       <TouchableOpacity onPress={Adjustment}>
         <View
           style={[
             {
               backgroundColor: background,
-              borderColor: borderColor
+              borderColor: borderColor,
+              width: width,
+              height: height
             },
             styles.ButtonWrapper
           ]}
         >
-          <Text style={[{ color: textColor }, styles.textStyle]}>{text}</Text>
+          <Text
+            style={[{ color: textColor, fontSize: textSize }, styles.textStyle]}
+          >
+            {text}
+          </Text>
         </View>
       </TouchableOpacity>
     );
@@ -39,15 +54,12 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   ButtonWrapper: {
-    width: 35,
-    height: 35,
     borderWidth: 1,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 50,
+    borderRadius: 50
   },
   textStyle: {
-    fontWeight: "bold",
-    fontSize: 24
+    fontWeight: "bold"
   }
 });
