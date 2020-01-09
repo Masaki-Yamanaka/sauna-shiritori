@@ -51,13 +51,18 @@ export default class imageOutput extends Component {
             Adjustment={() => {
               this.setState({ playerNum: this.state.playerNum - 1 });
             }}
-            Size={40}
+            textSize={30}
+            width={45}
+            height={45}
           />
           <NumButton
             text={"+"}
             textColor={colors.white}
             background={colors.pink01}
             borderColor={colors.white}
+            width={45}
+            height={45}
+            textSize={30}
             Adjustment={() => {
               this.setState({ playerNum: this.state.playerNum + 1 });
             }}
@@ -95,7 +100,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 15,
     padding: 20,
-    marginBottom: 60
+    marginBottom: 60,
+    marginHorizontal: 20
   },
   descText: {
     color: colors.pink01,

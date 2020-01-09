@@ -33,9 +33,9 @@ export default class App extends Component {
   }
   render() {
     // return <ImageOutput hotNum={4} coldNum={3} hardhot={1} spark={1} />;
-    return <InputNum />;
     // return (
     //   <CardSelect cardType={"hotCard"} cardName={"アツイカード"} cardNum={2}/>
     // );
+    return <Home />
   }
 }

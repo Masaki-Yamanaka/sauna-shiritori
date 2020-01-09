@@ -35,18 +35,11 @@ export default class InputNum extends Component {
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>カードを選択</Text>
         </View>
-
-        
         <View style={styles.inputWrapper}>
-
           <CardSelect cardType={"hotCard"} cardName={"アツイカード"} cardNum={2} />
           <CardSelect cardType={"coldCard"} cardName={"冷たいカード"} cardNum={4} />
           <CardSelect cardType={"sparkCard"} cardName={"シビれるカード"} cardNum={1} />
           <CardSelect cardType={"hardHotCard"} cardName={"激アツカード"} cardNum={0} />
-          
-
-    
-      
         </View>
 
         <View style={styles.nextButton}>
@@ -76,12 +69,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "bold"
   },
   inputWrapper: {
-    paddingTop: 50,
-    paddingBottom: 70
+    paddingTop: 30,
+    paddingBottom: 60
   },
   inputBox: {
     flexDirection: "row",
