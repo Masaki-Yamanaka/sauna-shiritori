@@ -86,7 +86,7 @@ export default class Home extends Component {
             textColor={colors.pink01}
             background={colors.white}
             style={styles.startButton}
-            handleButton={this.handleButton}
+            handleButton={() => this.props.navigation.navigate("PlayerSelect")}
             width={"80%"}
           />
 

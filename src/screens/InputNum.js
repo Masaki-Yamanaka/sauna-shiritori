@@ -16,17 +16,14 @@ export default class InputNum extends Component {
       hardhot: 0,
       spark: 0
     };
-    this.handleButton = this.handleButton.bind(this);
   }
 
-  handleButton() {
-    const { coldNum, hotNum } = this.state;
-    this.props.navigation.navigate("imageoutput", {
-      coldNum: coldNum,
-      hotNum: hotNum
-    });
+  componentDidMount() {
+    alert(this.props.navigation.getParam("playerNum"));
   }
-
+  handleCount() {
+    alert("aaa");
+  }
   render() {
     const { hotNum, coldNum, hardhot, spark } = this.state;
 
@@ -36,10 +33,50 @@ export default class InputNum extends Component {
           <Text style={styles.title}>カードを選択</Text>
         </View>
         <View style={styles.inputWrapper}>
-          <CardSelect cardType={"hotCard"} cardName={"アツイカード"} cardNum={2} />
-          <CardSelect cardType={"coldCard"} cardName={"冷たいカード"} cardNum={4} />
-          <CardSelect cardType={"sparkCard"} cardName={"シビれるカード"} cardNum={1} />
-          <CardSelect cardType={"hardHotCard"} cardName={"激アツカード"} cardNum={0} />
+          <CardSelect
+            cardType={"hotCard"}
+            cardName={"アツイカード"}
+            cardNum={hotNum}
+            addHandler={() => {
+              this.setState({ hotNum: this.state.hotNum + 1 });
+            }}
+            subtractHandler={() => {
+              this.setState({ hotNum: this.state.hotNum - 1 });
+            }}
+          />
+          <CardSelect
+            cardType={"coldCard"}
+            cardName={"冷たいカード"}
+            cardNum={coldNum}
+            addHandler={() => {
+              this.setState({ coldNum: this.state.coldNum + 1 });
+            }}
+            subtractHandler={() => {
+              this.setState({ coldNum: this.state.coldNum - 1 });
+            }}
+          />
+          <CardSelect
+            cardType={"sparkCard"}
+            cardName={"シビれるカード"}
+            cardNum={hardhot}
+            addHandler={() => {
+              this.setState({ hardhot: this.state.hardhot + 1 });
+            }}
+            subtractHandler={() => {
+              this.setState({ hardhot: this.state.hardhot - 1 });
+            }}
+          />
+          <CardSelect
+            cardType={"hardHotCard"}
+            cardName={"激アツカード"}
+            cardNum={spark}
+            addHandler={() => {
+              this.setState({ spark: this.state.spark + 1 });
+            }}
+            subtractHandler={() => {
+              this.setState({ spark: this.state.spark - 1 });
+            }}
+          />
         </View>
 
         <View style={styles.nextButton}>
@@ -47,7 +84,14 @@ export default class InputNum extends Component {
             text={"次へ"}
             textColor={colors.pink01}
             background={colors.white}
-            handleButton={this.handleButton}
+            handleButton={() => {
+              this.props.navigation.navigate("ImageOutput", {
+                hotNum: this.state.hotNum,
+                coldNum: this.state.coldNum,
+                hardhot: this.state.hardhot,
+                spark: this.state.spark
+              });
+            }}
           />
         </View>
       </ScrollView>

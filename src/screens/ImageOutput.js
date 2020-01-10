@@ -52,7 +52,11 @@ export default class imageOutput extends Component {
   }
 
   componentDidMount() {
-    const { hotNum, coldNum, hardhot, spark } = this.props;
+    const hotNum = this.props.navigation.getParam("hotNum")
+    const coldNum = this.props.navigation.getParam("coldNum")
+    const hardhot = this.props.navigation.getParam("hardhot")
+    const spark = this.props.navigation.getParam("spark")
+    
     const cardArray = [hotNum, coldNum, hardhot, spark]; //親コンポーネントから値を取得し、配列に格納
     for (var j = 0; j < cardArray.length; j++) {
       //stateと関連付け

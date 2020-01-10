@@ -20,6 +20,7 @@ export default class imageOutput extends Component {
     };
   }
 
+
   render() {
     return (
       <View style={styles.wrapper}>
@@ -73,6 +74,10 @@ export default class imageOutput extends Component {
           textColor={colors.pink01}
           background={colors.white}
           style={styles.startButton}
+          handleButton={() => {
+            this.props.navigation.navigate("InputNum", {
+            playerNum: this.state.playerNum
+          })}}
         />
       </View>
     );

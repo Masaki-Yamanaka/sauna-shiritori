@@ -53,6 +53,7 @@ export default class InputNum extends Component {
               borderColor={colors.white}
               width={30}
               height={30}
+              Adjustment={this.props.subtractHandler}
             />
             <NumButton
               text={"+"}
@@ -62,6 +63,7 @@ export default class InputNum extends Component {
               borderColor={colors.white}
               width={30}
               height={30}
+              Adjustment={this.props.addHandler}
             />
           </View>
         </View>
