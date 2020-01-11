@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import colors from "../styles/colors";
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import NumButton from "./buttons/NumButton";
 
 export default class InputNum extends Component {
@@ -73,14 +73,12 @@ export default class InputNum extends Component {
 }
 
 const styles = StyleSheet.create({
-
   cardSelectBox: {
     flexDirection: "row",
-    margin: 20,
+    marginVertical: 20,
     paddingHorizontal: 30,
     paddingVertical: 35,
-    borderWidth: 1,
-    borderColor: "#E98989",
+    backgroundColor: colors.pink01,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -88,6 +86,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
+
     elevation: 4
   },
   cardSelectImageBox: {

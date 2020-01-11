@@ -5,10 +5,13 @@ import Home from "../screens/Home";
 import PlayerSelect from "../screens/PlayerSelect";
 import InputNum from "../screens/InputNum";
 import ImageOutput from "../screens/ImageOutput";
+import Important from "../screens/settings/Important";
+import BasicRule from "../screens/settings/BasicRule";
+
 
 const screens = {
   Home: {
-    screen: Home,    
+    screen: Home,
   },
   PlayerSelect: {
     screen: PlayerSelect
@@ -18,13 +21,18 @@ const screens = {
   },
   ImageOutput: {
     screen: ImageOutput
+  },
+  Important: {
+    screen: Important
+  },
+  BasicRule: {
+    screen: BasicRule
   }
-
 };
 
 const StackNavigation = createStackNavigator(screens, {
   defaultNavigationOptions: {
-    header: null,
+    header: null
   }
-})
-export default createAppContainer(StackNavigation)
+});
+export default createAppContainer(StackNavigation);

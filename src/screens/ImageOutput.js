@@ -5,12 +5,17 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  Animated
+  Animated,
+  Dimensions
 } from "react-native";
 import colors from "../styles/colors";
 import ClapButton from "../components/buttons/ClapButton";
 import RoundedButton from "../components/buttons/RoundedButton";
+import { LinearGradient } from "expo-linear-gradient";
+import { globalStyles } from "../styles/global";
 
+
+const { width, height } = Dimensions.get("screen");
 const resultArray = [];
 var Num = 0;
 
@@ -52,11 +57,11 @@ export default class imageOutput extends Component {
   }
 
   componentDidMount() {
-    const hotNum = this.props.navigation.getParam("hotNum")
-    const coldNum = this.props.navigation.getParam("coldNum")
-    const hardhot = this.props.navigation.getParam("hardhot")
-    const spark = this.props.navigation.getParam("spark")
-    
+    const hotNum = this.props.navigation.getParam("hotNum");
+    const coldNum = this.props.navigation.getParam("coldNum");
+    const hardhot = this.props.navigation.getParam("hardhot");
+    const spark = this.props.navigation.getParam("spark");
+
     const cardArray = [hotNum, coldNum, hardhot, spark]; //親コンポーネントから値を取得し、配列に格納
     for (var j = 0; j < cardArray.length; j++) {
       //stateと関連付け
@@ -86,23 +91,27 @@ export default class imageOutput extends Component {
     };
 
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.container}>
-          <Animated.View style={animatedStyles}>
-            <Image source={cards[Num]} style={styles.image} />
-          </Animated.View>
-           <RoundedButton
-            text={"カードを引く"}
-            textColor={colors.pink01}
-            background={colors.white}
-            handleButton={this.startAnimation}
-            width={"70%"}
-          />
+      <LinearGradient
+        colors={["#EBB4B4", "#E98989"]}
+        style={globalStyles.wrapper}
+      >
+        <View style={globalStyles.container}>
+          <View style={styles.imageOutput}>
+            <Animated.View style={animatedStyles}>
+              <Image source={cards[Num]} style={styles.image} />
+            </Animated.View>
+            <RoundedButton
+              text={"カードを引く"}
+              textColor={colors.pink01}
+              background={colors.white}
+              handleButton={this.startAnimation}
+            />
+          </View>
         </View>
         <View>
           <ClapButton />
         </View>
-      </View>
+      </LinearGradient>
     );
   }
 }
@@ -110,17 +119,16 @@ export default class imageOutput extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: colors.pink01,
+    backgroundColor: colors.pink01
   },
-  container: {
+  imageOutput: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-    
+    alignItems: "center",
+    paddingTop: height*0.1
   },
   image: {
-    width: 300,
-    height: 417,
+    width: width - 72,
+    height: (width - 72) * 1.39,
     marginBottom: 40
   },
   button: {

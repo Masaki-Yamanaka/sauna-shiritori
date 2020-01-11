@@ -9,7 +9,6 @@ export default class NumButton extends Component {
       text,
       textColor,
       textSize,
-      background,
       borderColor,
       Adjustment,
       width,
@@ -20,7 +19,6 @@ export default class NumButton extends Component {
         <View
           style={[
             {
-              backgroundColor: background,
               borderColor: borderColor,
               width: width,
               height: height
