@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import colors from "../styles/colors";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
 import RoundedButton from "../components/buttons/RoundedButton";
+import NumButton from "../components/buttons/NumButton";
+import CardSelect from "../components/CardSelect";
+import { LinearGradient } from "expo-linear-gradient";
+import { globalStyles } from "../styles/global";
 
 export default class InputNum extends Component {
   static navigationOptions = { header: null };
@@ -9,70 +13,95 @@ export default class InputNum extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hotNum: 0,
-      coldNum: 0
+      hotNum: 3,
+      coldNum: 4,
+      hardhot: 0,
+      spark: 0
     };
-    this.changeHotNum = this.changeHotNum.bind(this);
-    this.changeColdNum = this.changeColdNum.bind(this);
-    this.handleButton = this.handleButton.bind(this);
-  }
-
-  handleButton() {
-    const { coldNum, hotNum } = this.state;
-    this.props.navigation.navigate("imageoutput", {coldNum: coldNum, hotNum: hotNum});
-  }
-
-  changeHotNum(num) {
-    this.setState({
-      hotNum: num
-    });
-  }
-
-  changeColdNum(num) {
-    this.setState({
-      coldNum: num
-    });
   }
 
   render() {
-    return (
-      <View style={styles.wrapper}>
-        <View style={styles.titleWrapper}>
-          <Text style={styles.title}>カードを選択</Text>
-        </View>
-        <View style={styles.inputWrapper}>
-          <View style={styles.inputBox}>
-            <View style={styles.inputBoxContainer}>
-              <Text style={styles.inputText}>アツイカード</Text>
-            </View>
-            <TextInput
-              style={styles.inputField}
-              onChangeText={this.changeHotNum}
-            />
-          </View>
+    const { hotNum, coldNum, hardhot, spark } = this.state;
 
-          <View style={styles.inputBox}>
-            <View style={styles.inputBoxContainer}>
-              <Text style={styles.inputText}>冷たいカード</Text>
+    return (
+      <ScrollView>
+        <LinearGradient
+          colors={["#EBB4B4", "#E98989"]}
+          style={globalStyles.wrapper}
+        >
+          <View style={globalStyles.container}>
+            <View style={styles.titleWrapper}>
+              <Text style={globalStyles.titleText}>カードを選択</Text>
             </View>
-            <TextInput
-              style={styles.inputField}
-              onChangeText={this.changeColdNum}
-            />
+            <View style={styles.inputWrapper}>
+              <CardSelect
+                cardType={"hotCard"}
+                cardName={"アツイカード"}
+                cardNum={hotNum}
+                addHandler={() => {
+                  this.setState({ hotNum: this.state.hotNum + 1 });
+                }}
+                subtractHandler={() => {
+                  this.setState({ hotNum: this.state.hotNum - 1 });
+                }}
+              />
+              <CardSelect
+                cardType={"coldCard"}
+                cardName={"冷たいカード"}
+                cardNum={coldNum}
+                addHandler={() => {
+                  this.setState({ coldNum: this.state.coldNum + 1 });
+                }}
+                subtractHandler={() => {
+                  this.setState({ coldNum: this.state.coldNum - 1 });
+                }}
+              />
+              <CardSelect
+                cardType={"sparkCard"}
+                cardName={"シビれるカード"}
+                cardNum={hardhot}
+                addHandler={() => {
+                  this.setState({ hardhot: this.state.hardhot + 1 });
+                }}
+                subtractHandler={() => {
+                  this.setState({ hardhot: this.state.hardhot - 1 });
+                }}
+              />
+              <CardSelect
+                cardType={"hardHotCard"}
+                cardName={"激アツカード"}
+                cardNum={spark}
+                addHandler={() => {
+                  this.setState({ spark: this.state.spark + 1 });
+                }}
+                subtractHandler={() => {
+                  this.setState({ spark: this.state.spark - 1 });
+                }}
+              />
+            </View>
+
+            <View style={styles.nextButton}>
+              <RoundedButton
+                text={"次へ"}
+                textColor={colors.pink01}
+                background={colors.white}
+                handleButton={() => {
+                  this.props.navigation.navigate("ImageOutput", {
+                    hotNum: this.state.hotNum,
+                    coldNum: this.state.coldNum,
+                    hardhot: this.state.hardhot,
+                    spark: this.state.spark
+                  });
+                }}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.nextButton}>
-          <RoundedButton
-            text={"次へ"}
-            textColor={colors.pink01}
-            background={colors.white}
-            handleButton={this.handleButton}
-          />
-        </View>
-      </View>
+        </LinearGradient>
+      </ScrollView>
     );
   }
 }
+
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -86,10 +115,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.white,
-    fontSize: 30
+    fontSize: 30,
+    fontWeight: "bold"
   },
   inputWrapper: {
-    flex: 2
+    paddingTop: 30,
+    paddingBottom: 60
   },
   inputBox: {
     flexDirection: "row",
@@ -97,21 +128,51 @@ const styles = StyleSheet.create({
   },
   inputBoxContainer: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
-  inputText: {
+
+  leftImageBox: {
+    flex: 1
+  },
+  leftImage: {
+    width: 150,
+    height: 230
+  },
+
+  rightTitle: {
+    color: colors.white,
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold"
+  },
+  rightNumText: {
+    textAlign: "center",
+    fontSize: 50,
     color: colors.white
   },
 
-  inputField: {
-    flex: 2,
+  rightContainer: {
+    flex: 1
+  },
+  rightTitleContainer: {
+    borderColor: colors.white,
     borderBottomWidth: 1,
-    paddingTop: 5,
-    paddingBottom: 5,
-    color: colors.white,
-    borderBottomColor: colors.white
+    padding: 10,
+    margin: 10
+  },
+  rightNumContainer: {
+    margin: 20
+  },
+  rightButtonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around"
+  },
+  minusButton: {
+    marginRight: 40
   },
   nextButton: {
-    flex: 1
+    marginBottom: 60
   }
 });

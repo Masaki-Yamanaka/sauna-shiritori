@@ -1,81 +1,117 @@
 import React, { Component } from "react";
-import { Text, View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Animated,
+  Dimensions
+} from "react-native";
 import colors from "../styles/colors";
+import ClapButton from "../components/buttons/ClapButton";
+import RoundedButton from "../components/buttons/RoundedButton";
+import { LinearGradient } from "expo-linear-gradient";
+import { globalStyles } from "../styles/global";
 
-var warm;
-var cold;
-var cardNum;
-var result = [];
+
+const { width, height } = Dimensions.get("screen");
+const resultArray = [];
+var Num = 0;
 
 export default class imageOutput extends Component {
-  static navigationOptions = { header: null };
   constructor(props) {
     super(props);
-    this.handlePress = this.handlePress.bind(this);
+    this.startAnimation = this.startAnimation.bind(this);
+
     this.state = {
       count: 0,
+      cardNum: 0,
       cards: {
-        1: require("../img/warm.jpg"),
-        2: require("../img/cold.jpg")
-      }
+        0: require("../img/start.png"),
+        1: require("../img/hot.png"),
+        2: require("../img/cold.png"),
+        3: require("../img/hardhot.png"),
+        4: require("../img/spark.png")
+      },
+      animation: new Animated.Value(0),
+      deg: 360
     };
   }
 
-  handlePress() {
-    this.setState(prevState => {
-      return {
-        count: prevState.count + 1
-      };
-    });
-    if (this.state.count >= result.length) {
-      alert("ととのった〜！");
-    }
-    cardNum = result[this.state.count];
-  }
+  startAnimation() {
+    setTimeout(() => {
+      this.setState(prev => {
+        return {
+          deg: prev.deg + 360,
+          count: prev.count + 1
+        };
+      });
+    }, 3500);
 
-  createCardOrder() {
-
-    const { hotNum, coldNum } = this.props.navigation.state.params;
-    
-    const warm = hotNum;
-    const cold = coldNum;
-
-    var warmArray = [];
-    var coldArray = [];
-
-    for (var i = 0; i < warm; i++) {
-      warmArray.push(1);
-    }
-    for (var i = 0; i < cold; i++) {
-      coldArray.push(2);
-    }
-    result = warmArray.concat(coldArray);
-
-    for (var i = result.length - 1; i >= 0; i--) {
-      // 0~iのランダムな数値を取得
-      var rand = Math.floor(Math.random() * (i + 1));
-      // 配列の数値を入れ替える
-      [result[i], result[rand]] = [result[rand], result[i]];
-    }
-    return result;
+    Animated.timing(this.state.animation, {
+      toValue: this.state.deg,
+      duration: 4000
+    }).start();
+    Num = resultArray[this.state.count];
   }
 
   componentDidMount() {
-    this.createCardOrder(warm, cold);
+    const hotNum = this.props.navigation.getParam("hotNum");
+    const coldNum = this.props.navigation.getParam("coldNum");
+    const hardhot = this.props.navigation.getParam("hardhot");
+    const spark = this.props.navigation.getParam("spark");
+
+    const cardArray = [hotNum, coldNum, hardhot, spark]; //親コンポーネントから値を取得し、配列に格納
+    for (var j = 0; j < cardArray.length; j++) {
+      //stateと関連付け
+      for (var i = 0; i < cardArray[j]; i++) {
+        resultArray.push(j + 1);
+      }
+    }
+    for (var s = resultArray.length - 1; s >= 0; s--) {
+      //シャッフル
+      // 0~sのランダムな数値を取得
+      var rand = Math.floor(Math.random() * (s + 1));
+      // 配列の数値を入れ替える
+      [resultArray[s], resultArray[rand]] = [resultArray[rand], resultArray[s]];
+    }
+    return resultArray;
   }
 
   render() {
-    const { cards } = this.state;
+    const { cards, count } = this.state;
+    const rotateInterpolate = this.state.animation.interpolate({
+      inputRange: [0, 360],
+      outputRange: ["0deg", "3600deg"]
+    });
+
+    const animatedStyles = {
+      transform: [{ rotateY: rotateInterpolate }]
+    };
 
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.container}>
-          <Image source={cards[cardNum]} style={styles.image} />
-          <TouchableOpacity style={styles.button} onPress={this.handlePress}>
-            <Text style={styles.text}>Press Me</Text>
-          </TouchableOpacity>
+      <LinearGradient
+        colors={["#EBB4B4", "#E98989"]}
+        style={globalStyles.wrapper}
+      >
+        <View style={globalStyles.container}>
+          <View style={styles.imageOutput}>
+            <Animated.View style={animatedStyles}>
+              <Image source={cards[Num]} style={styles.image} />
+            </Animated.View>
+            <RoundedButton
+              text={"カードを引く"}
+              textColor={colors.pink01}
+              background={colors.white}
+              handleButton={this.startAnimation}
+            />
+          </View>
         </View>
-      </View>
+        <View>
+          <ClapButton />
+        </View>
+      </LinearGradient>
     );
   }
 }
@@ -85,14 +121,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.pink01
   },
-  container: {
+  imageOutput: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    paddingTop: height*0.1
   },
   image: {
-    width: 300,
-    height: 300,
+    width: width - 72,
+    height: (width - 72) * 1.39,
     marginBottom: 40
   },
   button: {

@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import colors from "../styles/colors";
 import RoundedButton from "../components/buttons/RoundedButton";
 import PlayModal from "../components/modal/PlayModal";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
+import { SocialIcon } from "react-native-elements";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { LinearGradient } from "expo-linear-gradient";
+import { globalStyles } from "../styles/global";
+
+const { width, height } = Dimensions.get("screen");
 
 export default class Home extends Component {
   static navigationOptions = { header: null };
@@ -12,16 +18,10 @@ export default class Home extends Component {
       modalVisible: false
     };
 
-    this.handleButton = this.handleButton.bind(this);
     this.playButton = this.playButton.bind(this);
     this.closeModalScreen = this.closeModalScreen.bind(this);
     this.basicRuleTransition = this.basicRuleTransition.bind(this);
-    this.storyTransition = this.storyTransition.bind(this);
-    this.cardCategoryTransition = this.cardCategoryTransition.bind(this);
-    this.optionSettingTransition = this.optionSettingTransition.bind(this);
-  }
-  handleButton() {
-    this.props.navigation.navigate("inputnum");
+    this.importantTransition = this.importantTransition.bind(this);
   }
 
   playButton() {
@@ -37,30 +37,18 @@ export default class Home extends Component {
 
   // 遊び方ページ遷移  start
 
-  storyTransition() {
+  importantTransition() {
     this.setState({
       modalVisible: false
     });
-    this.props.navigation.navigate("story");
+    this.props.navigation.navigate("Important");
   }
 
   basicRuleTransition() {
     this.setState({
       modalVisible: false
     });
-    this.props.navigation.navigate("basicrule");
-  }
-  cardCategoryTransition() {
-    this.setState({
-      modalVisible: false
-    });
-    this.props.navigation.navigate("cardcategory");
-  }
-  optionSettingTransition() {
-    this.setState({
-      modalVisible: false
-    });
-    this.props.navigation.navigate("optionsetting");
+    this.props.navigation.navigate("BasicRule");
   }
 
   // 遊び方ページ遷移  end
@@ -68,59 +56,62 @@ export default class Home extends Component {
   render() {
     const { modalVisible } = this.state;
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.welcomeWrapper}>
+      <LinearGradient
+        colors={["#EBB4B4", "#E98989"]}
+        style={globalStyles.wrapper}
+      >
+        <View style={globalStyles.container}>
           <View style={styles.logo}>
             <Image source={require("../img/header-logo.png")} />
           </View>
           <View style={styles.title}>
-            <Text style={styles.titleText}>サウナしりとり</Text>
+            <Text style={globalStyles.titleText}>SAUNA SHIRITORI</Text>
           </View>
-        </View>
 
-        <View style={styles.buttonWrapper}>
-          <RoundedButton
-            text={"はじめる"}
-            textColor={colors.pink01}
-            background={colors.white}
-            style={styles.startButton}
-            handleButton={this.handleButton}
-          />
+          <View style={styles.buttonWrapper}>
+            <RoundedButton
+              text={"はじめる"}
+              textColor={colors.pink01}
+              background={colors.white}
+              handleButton={() =>
+                this.props.navigation.navigate("PlayerSelect")
+              }
+              marginBottom={30}
+            />
 
-          <RoundedButton
-            text={"遊び方"}
-            textColor={colors.white}
-            handleButton={this.playButton}
-            backButton={this.backButton}
+            <RoundedButton
+              text={"遊び方"}
+              textColor={colors.white}
+              handleButton={this.playButton}
+              backButton={this.backButton}
+            />
+            <View style={styles.socialContainer}>
+              <TouchableOpacity>
+                <SocialIcon type="twitter" />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <SocialIcon type="facebook" />
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          <PlayModal
+            modalVisible={modalVisible}
+            closeModalScreen={this.closeModalScreen}
+            importantTransition={this.importantTransition}
+            basicRuleTransition={this.basicRuleTransition}
           />
         </View>
-        <PlayModal
-          modalVisible={modalVisible}
-          closeModalScreen={this.closeModalScreen}
-          storyTransition={this.storyTransition}
-          basicRuleTransition={this.basicRuleTransition}
-          cardCategoryTransition={this.cardCategoryTransition}
-          optionSettingTransition={this.optionSettingTransition}
-        />
-      </View>
+      </LinearGradient>
     );
   }
 }
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: colors.pink01,
-    padding: 20
-  },
-  welcomeWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  },
   buttonWrapper: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "flex-end",
+    paddingBottom: height * 0.1
   },
   logo: {
     alignItems: "center",
@@ -129,9 +120,8 @@ const styles = StyleSheet.create({
   title: {
     alignItems: "center"
   },
-  titleText: {
-    fontSize: 50,
-    color: colors.white,
-    fontWeight: "600"
+  socialContainer: {
+    flexDirection: "row",
+    paddingTop: 40
   }
 });
