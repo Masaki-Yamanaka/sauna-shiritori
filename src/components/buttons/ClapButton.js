@@ -41,7 +41,7 @@ export default class ClapsButton extends Component {
 
   stopClapping() {
     if (this.clapTimer) {
-      clearInterval(this.clapTimer)
+      clearInterval(this.clapTimer);
     }
   }
 

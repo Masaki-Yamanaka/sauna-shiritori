@@ -14,7 +14,6 @@ export default class PlayModal extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.basic = this.basic.bind(this);
     this.important = this.important.bind(this);
-
   }
   closeModal() {
     this.props.closeModalScreen();
@@ -36,9 +35,8 @@ export default class PlayModal extends Component {
           style={globalStyles.wrapper}
         >
           <View style={globalStyles.container}>
-
             <View style={styles.listWrapper}>
-                 <RoundedButton
+              <RoundedButton
                 text={"大事なこと"}
                 textColor={colors.white}
                 handleButton={this.important}
@@ -87,6 +85,6 @@ const styles = StyleSheet.create({
   listWrapper: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   }
 });
