@@ -7,27 +7,32 @@ import InputNum from "../screens/InputNum";
 import ImageOutput from "../screens/ImageOutput";
 import Important from "../screens/settings/Important";
 import BasicRule from "../screens/settings/BasicRule";
+import Tutrial from "../screens/Tutrial";
 
 
 const screens = {
-  Home: {
-    screen: Home,
-  },
-  PlayerSelect: {
-    screen: PlayerSelect
-  },
-  InputNum: {
-    screen: InputNum
-  },
-  ImageOutput: {
-    screen: ImageOutput
-  },
-  Important: {
-    screen: Important
-  },
-  BasicRule: {
-    screen: BasicRule
+  // Home: {
+  //   screen: Home,
+  // },
+  // PlayerSelect: {
+  //   screen: PlayerSelect
+  // },
+  // InputNum: {
+  //   screen: InputNum
+  // },
+  // ImageOutput: {
+  //   screen: ImageOutput
+  // },
+  // Important: {
+  //   screen: Important
+  // },
+  // BasicRule: {
+  //   screen: BasicRule
+  // },
+   Tutrial: {
+    screen: Tutrial
   }
+
 };
 
 const StackNavigation = createStackNavigator(screens, {
