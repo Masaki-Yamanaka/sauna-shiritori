@@ -11,19 +11,20 @@ export default class RoundedButton extends Component {
       background,
       handleButton,
       width,
-      marginBottom
+      marginBottom,
+      opacity
     } = this.props;
     const backgroundColor = background || "transparent";
     const color = textColor || colors.black;
     return (
       <TouchableOpacity
         style={[
-          { backgroundColor, marginBottom: marginBottom },
+          { backgroundColor, marginBottom: marginBottom, opacity: opacity},
           styles.wrapper
         ]}
         onPress={handleButton}
       >
-        <View style={[styles.buttonTextWrapper, { width: width }]}>
+        <View style={[styles.buttonTextWrapper, { width: width, }]}>
           <Text style={[{ color }, styles.buttonText]}>{text}</Text>
         </View>
       </TouchableOpacity>
