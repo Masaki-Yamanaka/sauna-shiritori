@@ -14,7 +14,12 @@ export default class App extends Component {
       require("./src/img/hot.png"),
       require("./src/img/cold.png"),
       require("./src/img/hardhot.png"),
-      require("./src/img/spark.png")
+      require("./src/img/spark.png"),
+      require("./src/img/header-logo.png"),
+      require("./src/img/start.png"),
+      require("./src/img/tutrial1.png"),
+      require("./src/img/tutrial2.png"),
+      require("./src/img/tutrial3.png")
     ];
 
     const cacheImages = images.map(image => {

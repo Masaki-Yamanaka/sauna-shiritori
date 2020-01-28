@@ -11,24 +11,24 @@ import Tutrial from "../screens/Tutrial";
 
 
 const screens = {
-  // Home: {
-  //   screen: Home,
-  // },
-  // PlayerSelect: {
-  //   screen: PlayerSelect
-  // },
-  // InputNum: {
-  //   screen: InputNum
-  // },
-  // ImageOutput: {
-  //   screen: ImageOutput
-  // },
-  // Important: {
-  //   screen: Important
-  // },
-  // BasicRule: {
-  //   screen: BasicRule
-  // },
+  Home: {
+    screen: Home,
+  },
+  PlayerSelect: {
+    screen: PlayerSelect
+  },
+  InputNum: {
+    screen: InputNum
+  },
+  ImageOutput: {
+    screen: ImageOutput
+  },
+  Important: {
+    screen: Important
+  },
+  BasicRule: {
+    screen: BasicRule
+  },
    Tutrial: {
     screen: Tutrial
   }

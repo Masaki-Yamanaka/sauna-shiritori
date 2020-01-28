@@ -22,8 +22,8 @@ const backgrounds = [
   },
   {
     description:
-      "それでは、始めましょう。参加者は話になった状態で座ってください。",
-    detail: "",
+      "それでは、始めましょう。",
+    detail: "参加者は輪になった状態で座ってください。",
     img: require("../img/tutrial2.png")
   },
   {
