@@ -84,17 +84,17 @@ export default class Horizontalscreen extends Component {
                 <Text style={styles.tutrialText}>{item.description}</Text>
                 <Text style={styles.tutrialInterpolate}>{item.detail}</Text>
 
-                
-                <RoundedButton
-                  text={"はじめる"}
-                  textColor={colors.pink01}
-                  background={colors.white}
-                  opacity={index == 2 ? 1 : 0}
-                  handleButton={() =>
-                    this.props.navigation.navigate("PlayerSelect")
-                  }
-                  marginBottom={30}
-                />
+                {index === 2 && (
+                  <RoundedButton
+                    text={"はじめる"}
+                    textColor={colors.pink01}
+                    background={colors.white}
+                    handleButton={() =>
+                      this.props.navigation.navigate("PlayerSelect")
+                    }
+                    marginBottom={30}
+                  />
+                )}
               </View>
             </View>
           ))}
