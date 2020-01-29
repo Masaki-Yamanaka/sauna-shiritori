@@ -85,14 +85,14 @@ export default class Home extends Component {
               handleButton={this.playButton}
               backButton={this.backButton}
             />
-            <View style={styles.socialContainer}>
+            {/* <View style={styles.socialContainer}>
               <TouchableOpacity>
                 <SocialIcon type="twitter" />
               </TouchableOpacity>
               <TouchableOpacity>
                 <SocialIcon type="facebook" />
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
 
           <PlayModal
